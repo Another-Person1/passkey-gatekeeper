@@ -18,8 +18,19 @@
         }
         return originalCreate.apply(this, arguments);
     }
-    // Add stronger enforcement
+    // Add stronger enforcement later to prevent bypassing the override by directly calling PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable
     if (window.PublicKeyCredential) {
         PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable = async () => false;
     }
+    if ("PublicKeyCredential" in window) {
+        try {
+            Object.defineProperty(window.PublicKeyCredential, "isUserVerifyingPlatformAuthenticatorAvailable", {
+                value: undefined,
+                writable: false,
+                configurable: false
+            });
+        } 
+        catch (e) {}
+    }
+    if (!navigator.credentials) return;
 })
