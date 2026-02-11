@@ -1,7 +1,7 @@
 {
-    "name": "Passkey Blocker",
-    "description": "Restricts passkey prompts on websites you choose",
-    "version": "1.2",
+    "name": "Passkey Gatekeeper",
+    "description": "Allows you to choose which passkey prompts to allow on websites you choose",
+    "version": "1.3",
     "manifest_version": 3,
 
     "content_scripts": [
